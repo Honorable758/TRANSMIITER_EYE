@@ -7,6 +7,7 @@ import {
   ScrollView,
   Platform,
 } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import * as Location from 'expo-location';
 import * as Battery from 'expo-battery';
 import { MapPin, Battery as BatteryIcon, Clock, CircleAlert as AlertCircle, Wifi, Database } from 'lucide-react-native';
@@ -35,6 +36,8 @@ interface TransmissionData {
 }
 
 export default function TransmitterScreen() {
+  const insets = useSafeAreaInsets();
+
   const [data, setData] = useState<TransmissionData>({
     location: null,
     batteryLevel: 0,
@@ -242,7 +245,7 @@ export default function TransmitterScreen() {
     <View style={styles.container}>
       <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
         {/* Header */}
-        <View style={styles.header}>
+        <View style={[styles.header, { paddingTop: insets.top + 20 }]}>
           <View style={styles.headerContent}>
             <Text style={styles.title}>E4 TRANSMITTER</Text>
             <View style={styles.statusIndicator}>
@@ -402,7 +405,6 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   header: {
-    paddingTop: 60,
     paddingHorizontal: 20,
     paddingBottom: 20,
   },
