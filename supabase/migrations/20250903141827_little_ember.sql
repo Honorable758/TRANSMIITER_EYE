@@ -3,7 +3,7 @@
 
   1. New Tables
     - `location_data`
-      - `id` (uuid, primary key, auto-generated)
+      - `id` (int8, primary key, auto-generated)
       - `device_id` (text, device identifier)
       - `latitude` (numeric, GPS latitude)
       - `longitude` (numeric, GPS longitude)
