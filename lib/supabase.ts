@@ -1,7 +1,7 @@
 import { createClient } from '@supabase/supabase-js';
 
 // Your shared Supabase project configuration
-const supabaseUrl = 'https://ivfxivscfhaqajzdqmsh.supabase.co';
+const supabaseUrl = 'https://ivfxivscfhaqajzdqmsh.supabase.cohttps://ivfxivscfhaqajzdqmsh.supabase.co';
 const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml2ZnhpdnNjZmhhcWFqemRxbXNoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQ3NTUxMjIsImV4cCI6MjA3MDMzMTEyMn0.D4OPmVxkqAxOyt64MVr9aoIGkXuRejtefoU_Rz9-Oec';
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);
