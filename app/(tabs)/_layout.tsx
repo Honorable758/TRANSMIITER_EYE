@@ -1,11 +1,8 @@
 import { Tabs } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Radio, Settings } from 'lucide-react-native';
 
 export default function TabLayout() {
-  const insets = useSafeAreaInsets();
-
   const insets = useSafeAreaInsets();
 
   return (
