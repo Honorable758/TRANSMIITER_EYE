@@ -21,42 +21,31 @@ export const insertLocationData = async (data: LocationDataRecord): Promise<void
     console.log('🚀 Starting transmission to Supabase...');
     console.log('📍 Data to transmit:', JSON.stringify(data, null, 2));
     
-    // Test connection first
-    console.log('🔍 Testing Supabase connection...');
-    const { data: testData, error: testError } = await supabase
-      .from('location_data')
-      .select('count')
-      .limit(1);
-    
-    if (testError) {
-      console.error('❌ Supabase connection test failed:', testError);
-      throw new Error(`Connection failed: ${testError.message}`);
-    }
-    
-    console.log('✅ Supabase connection test successful');
-    
     // Insert the data
     console.log('📤 Inserting data into location_data table...');
-    const { error } = await supabase
+    const { data: insertedData, error } = await supabase
       .from('location_data')
-      .insert([{
-        device_id: data.device_id,
-        latitude: data.latitude,
-        longitude: data.longitude,
-        accuracy: data.accuracy,
-        timestamp: data.timestamp,
-        battery_level: data.battery_level,
-        device_type: data.device_type,
-      }]);
+      .insert([data])
+      .select();
     
     if (error) {
       console.error('❌ Insert error:', error);
-      throw new Error(`Database error: ${error.message}`);
+      console.error('❌ Error details:', {
+        message: error.message,
+        details: error.details,
+        hint: error.hint,
+        code: error.code
+      });
+      throw new Error(`Database error: ${error.message} (${error.code})`);
     }
     
     console.log('✅ Data transmitted successfully to location_data table!');
+    console.log('📊 Inserted record:', insertedData);
   } catch (error) {
     console.error('💥 Failed to transmit location data:', error);
+    if (error instanceof Error) {
+      console.error('💥 Error stack:', error.stack);
+    }
     throw error;
   }
 };
